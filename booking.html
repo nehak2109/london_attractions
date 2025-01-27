@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - London Attractions</title>
+    <link rel="stylesheet" href="Londonattraction.css">  
+    <script src="londonattraction.js"></script
+      <a href="Londonattraction.html"></a>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <a href="Londonattraction.html">
+      <img src="/Users/arvind/Downloads/logo.jpg"alt ="london-Attarction">
+        <!-- <a href="Londonattraction.html">London Attractions</a> -->
+      </a>
+    </div>
+    <ul>
+        <li><a href="Londonattraction.html">Home</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="ticket-price">Tickets and Prices</a</li>
+    
+    </ul>
+    <button id="darkModeToggle">🌙</button>
+</nav>
+
+    <header>
+        <h1>About London Attractions</h1>
+    </header>
+
+    <!-- About Page Section -->
+    <section id="about">
+        <div class="container">
+            <h1>About London Attractions</h1>
+            <p>Welcome to <strong>London Attractions</strong> – your ultimate guide to exploring the best of London!</p>
+            <!-- The rest of the About content goes here -->
+
+            <h2>Book Your London Attraction Tour</h2>
+            <p>Fill out the form below to inquire or book your tour with us. We will get back to you shortly!</p>
+            
+            <!-- Booking Form -->
+            <form id="booking-form">
+                <!-- Full Name -->
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+                
+                <!-- Email Address -->
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <!-- Phone Number -->
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                
+                <!-- Preferred Attraction -->
+                <label for="attraction">Preferred Attraction:</label>
+                <select id="attraction" name="attraction" required>
+                    <option value="big-ben">Big Ben</option>
+                    <option value="london-eye">London Eye</option>
+                    <option value="tower-of-london">Tower of London</option>
+                    <option value="westminster-abbey">Westminster Abbey</option>
+                    <option value="other">Other (please specify below)</option>
+                </select>
+
+                <!-- Other Attraction (if selected) -->
+                <label for="other-attraction" id="other-label" style="display:none;">Please Specify:</label>
+                <input type="text" id="other-attraction" name="other-attraction" placeholder="Enter other attraction" style="display:none;">
+
+                <!-- Date of Visit -->
+                <label for="visit-date">Preferred Date of Visit:</label>
+                <input type="date" id="visit-date" name="visit-date" required>
+                
+                <!-- Message/Comments -->
+                <label for="message">Additional Comments/Requests:</label>
+                <textarea id="message" name="message" placeholder="Any special requests or questions?" rows="4"></textarea>
+                
+                <!-- Submit Button -->
+                <button type="submit">Submit Booking</button>
+            </form>
+            <p id="form-message" style="color: green;"></p>
+        </div>
+    </section>
+    <footer>
+      <p>&copy; 2025 London Attractions. All rights reserved.</p>
+  </footer>
+
+
+</body>
+</html>
+
