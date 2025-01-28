@@ -10,54 +10,85 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Handle Booking Form Submission
-const bookingForm = document.getElementById('booking-form'); // Ensure the form ID is correct
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all the "Book Now" buttons
+  const bookNowButtons = document.querySelectorAll('.book-now');
 
-if (bookingForm) {
-  bookingForm.addEventListener('submit', function(event) {
-    event.preventDefault();  // Prevents the form from actually submitting to a server
+  // Get the booking form and confirmation message elements
+  const bookingForm = document.getElementById('bookingForm');
+  const confirmationMessage = document.getElementById('confirmationMessage');
+  const attractionNameSpan = document.getElementById('attractionName');
 
-    // Get values from the form inputs
-    const fullName = document.getElementById('full-name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const attraction = document.getElementById('attraction').value;
-    const otherAttraction = document.getElementById('other-attraction').value;
-    const visitDate = document.getElementById('visit-date').value;
-    const message = document.getElementById('message').value;
+  // Get the form element
+  const bookingFormDetails = document.getElementById('bookingFormDetails');
+  const formInputs = {
+      name: document.getElementById('name'),
+      email: document.getElementById('email'),
+      tickets: document.getElementById('tickets')
+  };
 
-    // Simple validation (ensure all required fields are filled)
-    if (fullName === "" || email === "" || attraction === "" || visitDate === "") {
-        alert("Please fill out all required fields.");
-        return;
-    }
+  // Store selected attraction details
+  let selectedAttraction = "";
 
-    // Display a confirmation message
-    const formMessage = document.getElementById('form-message');
-    formMessage.textContent = `Thank you, ${fullName}! Your booking for the ${attraction} has been submitted. We will get back to you soon.`;
+  // When the "Book Now" button is clicked
+  bookNowButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+          // Get the attraction name and price from the button's data attributes
+          selectedAttraction = button.getAttribute('data-attraction');
+          
+          // Show the booking form and hide the ticket section
+          bookingForm.style.display = 'block';
+          document.querySelector('.ticket-price-section').style.display = 'none';
 
-    // Log the form data (for demonstration, you can remove this or send it to a server)
-    console.log({
-        fullName,
-        email,
-        phone,
-        attraction,
-        otherAttraction,
-        visitDate,
-        message
-    });
-
-    // Show a simple confirmation message
-    alert('Thank you for your booking enquiry! We will get back to you soon.');
-
-    // Optionally, clear the form fields after submission
-    bookingForm.reset();
+          // Optionally, you can prefill or show the selected attraction in the form
+          // (For now, we'll just use it in the confirmation message later)
+      });
   });
+
+  // Handle form submission
+  bookingFormDetails.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission (no server interaction)
+
+      // Capture the form data (you can later send it to the server)
+      const userName = formInputs.name.value;
+      const userEmail = formInputs.email.value;
+      const numTickets = formInputs.tickets.value;
+
+      // Hide the booking form and show the confirmation message
+      bookingForm.style.display = 'none';
+      confirmationMessage.style.display = 'block';
+
+      // Show confirmation message
+      attractionNameSpan.textContent = selectedAttraction;
+      // Optionally log the booking details for reference
+      console.log(`Booking confirmed for ${userName} (${userEmail}) - ${numTickets} tickets for ${selectedAttraction}`);
+  });
+});
+
+// <!-- JavaScript to Handle Form Submission -->
+
+function submitForm(event) {
+  event.preventDefault(); // Prevent the default form submission
+  
+  // Get form data
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  // Display confirmation message
+  document.getElementById('confirmationMessage').style.display = 'block';
+  
+  // Hide the form after submission
+  document.getElementById('contactForm').style.display = 'none';
+
+  // Optional: Log form data (for debugging or saving)
+  console.log('Name:', name);
+  console.log('Email:', email);
+  console.log('Message:', message);
+
+  // Optionally send this data to your server for further processing
+  // Example: sendDataToServer(name, email, message);
 }
 
-// Show the 'Other Attraction' input if "Other" is selected
-document.getElementById('attraction').addEventListener('change', function() {
-  const otherOption = this.value === 'other';
-  document.getElementById('other-label').style.display = otherOption ? 'block' : 'none';
-  document.getElementById('other-attraction').style.display = otherOption ? 'block' : 'none';
-});
+
+
